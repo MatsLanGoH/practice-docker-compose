@@ -25,7 +25,9 @@ SECRET_KEY = 'ns_v6dj$cwtfe6#!v5kpl79hlt3@dzd-#y8d#+ipqvk^_2!@58'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+]
 
 
 # Application definition
