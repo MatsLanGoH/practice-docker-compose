@@ -1,12 +1,14 @@
 # Start from an official image
-FROM python:3.6
+FROM python:3.7
 
 # Create app directory in container
 RUN mkdir -p /var/www/djangoapp/src
 WORKDIR /var/www/djangoapp/src
 
 # Install dependencies
-RUN pip install gunicorn django
+# Use `--system` flag because we don't need an extra virtualenv
+COPY Pipfile Pipfile.lock /var/www/djangoapp/src/
+RUN pip install pipenv && pipenv install --system
 
 # Copy project code
 COPY . /var/www/djangoapp/src
