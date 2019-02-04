@@ -3,8 +3,13 @@ version: '3'
 services:
   djangoapp:
     build: .
+    command: gunicorn --chdir hello --bind 0.0.0.0:8000 hello.wsgi:application
+    ports:
+      - 8000
     volumes:
       - .:/var/www/djangoapp/src
+      - static_volume:/var/www/djangoapp/static
+      - media_volume:/var/www/djangoapp/media
     networks:
       - nginx_network
       - database1_network
@@ -12,11 +17,13 @@ services:
       - database1
 
   nginx:
-    image: nginx:1.14
+    image: nginx:1.13
     ports:
-      - 8000:80
+      - 1337:80
     volumes:
-      - ./config/nginx/conf.d:/etc/nginx/config.d
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - static_volume:/var/www/djangoapp/static
+      - media_volume:/var/www/djangoapp/media
     depends_on:
       - djangoapp
     networks:
@@ -40,3 +47,6 @@ networks:
 
 volumes:
   database1_volume:
+  static_volume:
+  media_volume:
+
