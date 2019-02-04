@@ -26,7 +26,7 @@ SECRET_KEY = 'ns_v6dj$cwtfe6#!v5kpl79hlt3@dzd-#y8d#+ipqvk^_2!@58'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'localhost',
+    '*'
 ]
 
 
@@ -124,3 +124,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# As declared in nginx conf
+STATIC_ROOT = os.path.join(os.path.dirname(os.path.dirname(BASE_DIR)), 'static')
+
+MEDIA_ROOT = os.path.join(os.path.dirname(os.path.dirname(BASE_DIR)), 'media')
