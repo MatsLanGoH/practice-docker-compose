@@ -8,8 +8,8 @@ services:
       - 8000
     volumes:
       - .:/var/www/djangoapp/src
-      - static_volume:/var/www/djangoapp/src/static
-      - media_volume:/var/www/djangoapp/src/media
+      - static_volume:/var/www/djangoapp/static
+      - media_volume:/var/www/djangoapp/media
     networks:
       - nginx_network
       - database1_network
@@ -22,8 +22,8 @@ services:
       - 1337:80
     volumes:
       - ./config/nginx/conf.d:/etc/nginx/conf.d
-      - static_volume:/var/www/djangoapp/src/static
-      - media_volume:/var/www/djangoapp/src/media
+      - static_volume:/var/www/djangoapp/static
+      - media_volume:/var/www/djangoapp/media
     depends_on:
       - djangoapp
     networks:
